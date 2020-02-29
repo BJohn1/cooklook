@@ -11,12 +11,12 @@ const Navbar = ({isLoggedIn, currentUser, doSetCurrentUser}) => {
             console.log(error)
         }
     }
+    console.log(currentUser)
     return (
     <div>
         <NavLink exact to='/'>
             Home
         </NavLink>
-        <NavLink exact to='/movies/search'>Search for a Movie</NavLink>
     {isLoggedIn ? (
     <>
     <span>Hello {currentUser.username}</span>
