@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Routes from './components/Routes'
+import NavBar from './components/Navbar'
 
-function App() {
+const App = () => {
+  const [currentUser, setCurrentUser] = useState({})
+  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const doSetCurrentUser = currentUser => {
+    setCurrentUser(currentUser)
+    let isLoggedIn = currentUser ? true : false
+    setisLoggedIn(isLoggedIn)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar
+        isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
+        doSetCurrentUser={doSetCurrentUser}
+      />
+      <Routes doSetCurrentUser={doSetCurrentUser} />
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
