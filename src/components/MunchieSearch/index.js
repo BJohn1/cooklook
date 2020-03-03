@@ -3,9 +3,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-
-
-
 class MunchieSearch extends Component {
 
     constructor(props) {
@@ -39,8 +36,6 @@ class MunchieSearch extends Component {
             console.log(`Latitude : ${crd.latitude}`);
             console.log(`Longitude: ${crd.longitude}`);
             console.log(`More or less ${crd.accuracy} meters.`);
-            console.log(this.state.longitude)
-
         }
         
         function error(err) {
@@ -65,11 +60,11 @@ class MunchieSearch extends Component {
 
         //using a proxy server cors-anywhere to get rid of the CROS probblem 
         //SUPER HOT TIP: passing the location variable, which equals to the user's input (see below). Instead of grabbbing the entire API, it will only retrieve the restaurants that are closed to the lcoation information we entered. This makes the lodading wayyyyyyy faster.
-        axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?term=${locationSearched}&latitude=${this.state.latitude}&longitude=${this.state.longitude}&limit=3`, {
+        axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${locationSearched}&latitude=${this.state.latitude}&longitude=${this.state.longitude}&limit=1`, {
         //required authorization format from API 
         headers: {
             //to get the API from the .env file use process.env.{variable name}
-            Authorization: `Bearer ${process.env.YELP_APP_API_KEY}`
+            Authorization: `Bearer ${process.env.REACT_APP_YELP_APP_API_KEY}`
         },
         //option params passed to API call to retrieve only breakfast and lunch spots 
         
@@ -82,7 +77,8 @@ class MunchieSearch extends Component {
         })
         .catch((err) => {
             //fire the errorState message if there is no information return from the API
-            this.setState({ errorState: `Sorry we coudln't find information related to the location you search, do you want to try something else?`, loading: false })
+            console.log(err)
+            this.setState({ errorState: `Sorry we coudln't find information related to the location you searched, do you want to try something else?`, loading: false })
         })
     }
 

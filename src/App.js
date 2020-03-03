@@ -6,6 +6,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import SearchForm from './components/SearchForm';
 import PasswordForgetLink from "./components/PasswordForget";
+import MunchieSearch from './components/MunchieSearch'
 
 
 
@@ -33,6 +34,7 @@ class App extends Component {
     const {
       isLoggedIn,
       currentUser,
+      searchLocationQuery
     } = this.state
   return (
     <div>
@@ -43,7 +45,10 @@ class App extends Component {
         <Route exact path='/signup' render={()=> <SignUp doSetCurrentUser={this.doSetCurrentUser}/>} />
         <Route exact path='/password-forget' component={PasswordForgetLink} />
         <Route exact path='/munchies/search' render={()=> <SearchForm onFormSubmit={this.onFormSubmit}/>}/>
+        <MunchieSearch searchLocationQuery = {this.state.searchLocationQuery}/>  
       </Switch>
+      <SearchForm onFormSubmit={this.onFormSubmit}/>
+      <MunchieSearch searchLocationQuery = {searchLocationQuery}/>
     </div>
   );
   }
