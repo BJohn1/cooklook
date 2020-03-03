@@ -4,12 +4,16 @@ import { Route, Switch } from "react-router-dom";
 import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import SearchForm from './components/SearchForm';
 import PasswordForgetLink from "./components/PasswordForget";
+
+
 
 class App extends Component {
   state = {
     currentUser: {},
     isLoggedIn: false,
+    searchLocationQuery: null
   };
   doSetCurrentUser = (currentUser) => {
     console.log(currentUser)
@@ -18,6 +22,13 @@ class App extends Component {
       isLoggedIn: currentUser ? true : false,
     })
   };
+
+  onFormSubmit = (searchLocationQuery) => {
+    this.setState({
+      searchLocationQuery: searchLocationQuery
+    })
+  }
+
   render() {
     const {
       isLoggedIn,
@@ -31,6 +42,7 @@ class App extends Component {
         <Route exact path='/login' render={()=> <Login doSetCurrentUser={this.doSetCurrentUser}/>} />
         <Route exact path='/signup' render={()=> <SignUp doSetCurrentUser={this.doSetCurrentUser}/>} />
         <Route exact path='/password-forget' component={PasswordForgetLink} />
+        <Route exact path='/munchies/search' render={()=> <SearchForm onFormSubmit={this.onFormSubmit}/>}/>
       </Switch>
     </div>
   );
