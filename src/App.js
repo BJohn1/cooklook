@@ -7,6 +7,7 @@ import SignUp from './components/SignUp';
 import SearchForm from './components/SearchForm';
 import PasswordForgetLink from "./components/PasswordForget";
 import MunchieSearch from './components/MunchieSearch'
+import Camera from './components/Camera'
 
 
 
@@ -44,6 +45,7 @@ class App extends Component {
         <Route exact path='/login' render={()=> <Login doSetCurrentUser={this.doSetCurrentUser}/>} />
         <Route exact path='/signup' render={()=> <SignUp doSetCurrentUser={this.doSetCurrentUser}/>} />
         <Route exact path='/password-forget' component={PasswordForgetLink} />
+        <Route exact path='/munchies/camera' component={Camera} />
         <Route exact path='/munchies/search' render={()=> <SearchForm onFormSubmit={this.onFormSubmit}/>}/>
         <MunchieSearch searchLocationQuery = {this.state.searchLocationQuery}/>  
       </Switch>

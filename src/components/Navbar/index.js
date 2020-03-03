@@ -18,6 +18,7 @@ const Navbar = ({isLoggedIn, currentUser, doSetCurrentUser}) => {
             Home
         </NavLink>
         <NavLink exact to='/munchies/search'> Search For Something To Eat! </NavLink>
+        <NavLink exact to ='/munchies/camera'>Take a Photo</NavLink>
     {isLoggedIn ? (
     <>
     <span>Hello {currentUser.username}</span>

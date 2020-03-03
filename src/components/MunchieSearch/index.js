@@ -108,20 +108,13 @@ class MunchieSearch extends Component {
                         {result.location.display_address[0]}, {result.location.display_address[1]}
                     </p>
                     
-                    <p className = "RestaurantInfo__para">
-                        <FontAwesomeIcon 
-                        icon = "phone" 
-                        className = "RestaurantInfo__icon"
-                        aria-label = "phone number:" />
-                        {result.phone}
-                    </p>
 
                     <img 
                         src = {require(`../../assets/yelp_stars/regular/${result.rating}.png`)}
                         alt = {`yelp ratings: ${result.rating}/5`}
                         className = "RestaurantInfo__rating"/>
 
-                    <p className = "RestaurantInfo__reviewCount"> Based on {result.review_count} Reviews</p>
+                    <p className = "RestaurantInfo__reviewCount"> {result.review_count} Reviews</p>
                
                     <a 
                         href= {result.url} 
