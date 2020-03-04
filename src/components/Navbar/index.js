@@ -18,16 +18,16 @@ const Navbar = ({isLoggedIn, currentUser, doSetCurrentUser}) => {
             Home
         </NavLink>
         <NavLink exact to='/munchies/search'> Search For Something To Eat! </NavLink>
-        <NavLink exact to ='/munchies/camera'>Take a Photo</NavLink>
+        <NavLink exact to ='/munchies/camera'> Take a Photo </NavLink>
     {isLoggedIn ? (
     <>
     <span>Hello {currentUser.username}</span>
-    <span style={{cursor:'pointer'}} onClick={logoutUser}>Logout</span>
+    <span style={{cursor:'pointer'}} onClick={logoutUser}> Logout </span>
     </>
 ) : (
     <> 
-        <NavLink exact to='/login'>Login</NavLink>
-        <NavLink exact to='/signup'>SignUp</NavLink>
+        <NavLink exact to='/login'> Login </NavLink>
+        <NavLink exact to='/signup'> SignUp </NavLink>
         
     </>
 )}

@@ -7,11 +7,15 @@ import ImagePreview from '../ImagePreview'; // source code : ./src/demo/AppWithI
  
 function App (props) {
   const [dataUri, setDataUri] = useState('');
-  const arr=[]
+  const [pics, setPics] = useState([]);
+
   function handleTakePhoto (dataUri) {
+      setPics([...pics, dataUri])
     // Do stuff with the photo...
-    arr.push(dataUri)
-    console.log('takePhoto');
+    // let arr = []
+    // arr.push(dataUri)
+    // console.log(arr)
+    // console.log('takePhoto');
   }
  
   function handleTakePhotoAnimationDone (dataUri) {
@@ -53,7 +57,12 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
-        <ImagePreview dataUri={dataUri} isFullscreen={isFullscreen} />      
+        <ImagePreview dataUri={dataUri} isFullscreen={isFullscreen} /> 
+        <ul>
+            {pics.map((p,i)=>(
+                <li key={i}><img src={p} width='50' height='50'/></li>
+            ))}
+         </ul>  
         </>
       }
     </div>
@@ -61,3 +70,4 @@ function App (props) {
 }
  
 export default App;
+
