@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import axios from 'axios'
 import "./index.css";
 import { withRouter, Route, Switch, NavLink } from "react-router-dom";
+import Camera from '../Camera'
 
 
 
@@ -40,7 +41,6 @@ function MunchieShow(props) {
   return (
     <div class="card">
       <h1>{business.name}</h1> 
-      {/* <h1>{movie.title}</h1> */}
       <br></br>
       <div class="container">
         <img
@@ -50,11 +50,10 @@ function MunchieShow(props) {
           width="420"
         />
       </div>
-      {/* <p>{business.location.display_address[1]}</p> */}
       <p>Rating: {business.rating} out of 5 Stars</p>
       <p>{business.review_count} People Have Reviewed <strong>{business.name}</strong></p>
       <a href={business.url} target='blank'>More info on YELP</a><br></br>
-      <button><NavLink exact to ='/munchies/camera'> Add More Photos to Share </NavLink></button>
+      <button><NavLink exact to ={`/munchies/${business.id}/camera`}> Add More Photos to Share </NavLink></button>
     </div>
   );
 }
