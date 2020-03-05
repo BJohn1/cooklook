@@ -7,7 +7,9 @@ import SignUp from './components/SignUp';
 import SearchForm from './components/SearchForm';
 import PasswordForgetLink from "./components/PasswordForget";
 import MunchieSearch from './components/MunchieSearch'
+import MunchieShow from './components/MunchieShow'
 import Camera from './components/Camera'
+import './App.css'
 
 
 
@@ -47,10 +49,11 @@ class App extends Component {
         <Route exact path='/password-forget' component={PasswordForgetLink} />
         <Route exact path='/munchies/camera' component={Camera} />
         <Route exact path='/munchies/search' render={()=> <SearchForm onFormSubmit={this.onFormSubmit}/>}/>
-        <MunchieSearch searchLocationQuery = {this.state.searchLocationQuery}/>  
+        <Route exact path='/munchies/:id' render={()=> <MunchieShow user={this.state.currentUser}/>} />
+        {/* <MunchieSearch searchLocationQuery = {this.state.searchLocationQuery}/>   */}
       </Switch>
-      <SearchForm onFormSubmit={this.onFormSubmit}/>
-      <MunchieSearch searchLocationQuery = {searchLocationQuery}/>
+      {/* <SearchForm onFormSubmit={this.onFormSubmit}/>
+      <MunchieSearch searchLocationQuery = {searchLocationQuery}/> */}
     </div>
   );
   }

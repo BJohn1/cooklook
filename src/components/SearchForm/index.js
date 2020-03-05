@@ -29,11 +29,11 @@ class SearchForm extends Component {
                     htmlFor = 'location'
                     arialabel = 'enter address, neighbourhood, city, province or postal code'
                     className = 'searchForm__label'
-                    >Where are you right now? </label>
+                    >Tell Us: </label>
                     <input 
                     type = 'text'
                     id = 'location'
-                    placeholder = 'address, neighbourhood, city, province or postal code'
+                    placeholder = "Name of Establishment you're at"
                     value = {this.state.searchLocationQuery}
                     onChange = {this.handleSearchChange}
                     className = 'searchForm__input'

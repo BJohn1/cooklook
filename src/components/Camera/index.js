@@ -57,7 +57,6 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
-        <ImagePreview dataUri={dataUri} isFullscreen={isFullscreen} /> 
         <ul>
             {pics.map((p,i)=>(
                 <li key={i}><img src={p} width='50' height='50'/></li>

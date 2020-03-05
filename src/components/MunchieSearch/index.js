@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom'
 
 
 class MunchieSearch extends Component {
@@ -84,23 +85,23 @@ class MunchieSearch extends Component {
 
     renderEmptyState () {
         return (
-            <h2 className = "heading-tertiary">Hang tight! We are working on getting you the list of best brunch spots in your neighbourhood! </h2>
+            <h2 className = "heading-tertiary">Loading Results... </h2>
         )
     }
 
     renderRestaurantInfo () {
 
-        const RestaruantList = this.state.results.map((result) => {
+        const RestaruantList = this.state.results.map((result,i) => {
             
             return (  
                 <div 
                     className = "RestaurantInfo"
                     key = {result.id}
-                >
-                    <img src = {result.image_url} alt = "" className = "RestaurantInfo__img" height="100" width="100"/>
+                ><Link to={`/munchies/${result.id}`}key={i}>
+                    <h2 ><img src = {result.image_url} alt = "" className = "RestaurantInfo__img" height="100" width="100"/></h2>
                     <h2 className = "heading-tertiary RestaurantInfo__name">{result.name}</h2>
                     
-                    <p className = "RestaurantInfo__para">
+                    {/* <p className = "RestaurantInfo__para">
                         <FontAwesomeIcon 
                         icon = "map-marker-alt" 
                         className = "RestaurantInfo__icon"
@@ -120,9 +121,9 @@ class MunchieSearch extends Component {
                         href= {result.url} 
                         className = "RestaurantInfo__website">
                             More information on Yelp
-                    </a>
+                    </a> */}
 
-                </div>  
+                </Link></div>  
             );
         });
 

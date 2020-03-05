@@ -1,42 +1,60 @@
 import React, { Component, useState, useEffect } from "react";
+import axios from 'axios'
 import "./index.css";
-import { withRouter } from "react-router-dom";
-import { getMovieById } from "../../services/movieService";
+import { withRouter, Route, Switch, NavLink } from "react-router-dom";
 
-function MovieShow(props) {
-  const [movie, setMovie] = useState({});
+
+
+function MunchieShow(props) {
+  const [business, setBusiness] = useState({});
   const [count, setCount] = useState(0);
 
   async function fetchData() {
-    const movieId = props.match.params.id;
-    const movieResult = await getMovieById(movieId);
-    setMovie(movieResult);
+    const id = props.match.params.id;
+    console.log(id)
+    axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`, {
+      headers: {
+        //to get the API from the .env file use process.env.{variable name}
+        Authorization: `Bearer ${process.env.REACT_APP_YELP_APP_API_KEY}`
+    },
+    })
+      .then(res => {
+          console.log(res)
+          setBusiness(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    
+    //const movieResult = await getMovieById(movieId);
+    //setMovie(movieResult);
   }
 
   useEffect(() => {
     fetchData();
   }, []);
 
+
+  console.log(business)
+
   return (
     <div class="card">
-      <h1>{movie.title}</h1>
+      <h1>{business.name}</h1> 
+      {/* <h1>{movie.title}</h1> */}
       <br></br>
       <div class="container">
         <img
-          src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-          alt="movie poster"
+          src={business.image_url}
+          alt="munchie image"
           height="420"
           width="420"
         />
-        <h5>Overview:</h5>
-        <p>{movie.overview}</p>
       </div>
-      <button
-        disabled={props.user.email ? false : true}
-        onClick={()=>setCount(count+1)}
-      >
-        ♡ Likes: {count}
-      </button>
+      {/* <p>{business.location.display_address[1]}</p> */}
+      <p>Rating: {business.rating} out of 5 Stars</p>
+      <p>{business.review_count} People Have Reviewed <strong>{business.name}</strong></p>
+      <a href={business.url} target='blank'>More info on YELP</a><br></br>
+      <button><NavLink exact to ='/munchies/camera'> Add More Photos to Share </NavLink></button>
     </div>
   );
 }
@@ -70,4 +88,4 @@ function MovieShow(props) {
     }
 } */
 
-export default withRouter(MovieShow);
+export default withRouter(MunchieShow);
