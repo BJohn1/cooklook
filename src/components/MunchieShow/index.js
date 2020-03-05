@@ -7,7 +7,7 @@ import Camera from '../Camera'
 
 
 function MunchieShow(props) {
-  const [business, setBusiness] = useState({});
+  const [business, setBusiness] = useState([]);
   const [count, setCount] = useState(0);
 
   async function fetchData() {
@@ -27,8 +27,7 @@ function MunchieShow(props) {
         console.log(err)
       })
     
-    //const movieResult = await getMovieById(movieId);
-    //setMovie(movieResult);
+ 
   }
 
   useEffect(() => {
@@ -50,6 +49,7 @@ function MunchieShow(props) {
           width="420"
         />
       </div>
+      
       <p>Rating: {business.rating} out of 5 Stars</p>
       <p>{business.review_count} People Have Reviewed <strong>{business.name}</strong></p>
       <a href={business.url} target='blank'>More info on YELP</a><br></br>

@@ -8,16 +8,16 @@ import ImagePreview from '../ImagePreview'; // source code : ./src/demo/AppWithI
 function App (props) {
   const [dataUri, setDataUri] = useState('');
   const [pics, setPics] = useState([]);
-  const[url,setUrl]=useState('');
-
+  const[url,setUrl]=useState([]);
+  
   function handleTakePhoto (dataUri) {
     var storage=firebase.storage()
     var ref=storage.ref()
-    var imagesRef=ref.child('images')
+    var imagesRef=ref.child(`${url.length}`)
     //how to get the src for the image I just took VVVVVV
-    ref.child('images').getDownloadURL().then(function(url) {
+    ref.child(`${url.length}`).getDownloadURL().then(function(url) {
       var test = url;
-      setUrl(url)
+      setUrl([...url, test])
       alert(url);//THIS IS IT
       document.querySelector('img').src = test;
     }).catch(function(error) {
@@ -28,7 +28,7 @@ function App (props) {
       console.log('Uploaded a base64 string!');
     });
       setPics([...pics, dataUri])
-      console.log(pics)
+      console.log(url)
     // Do stuff with the photo...
     // let arr = []
     // arr.push(dataUri)
@@ -75,12 +75,17 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
-        <ul>
+        {/* <ul>
             {pics.map((p,i)=>(
                 <li key={i}><img src={p} width='50' height='50'/></li>
             ))}
+         </ul>  */} 
+         <ul>
+            {url.map((u,i)=>(
+                <li key={i}><img src={u} width='50' height='50' alt={u}/></li>
+            ))}
          </ul>  
-         <img src={url} width='100' height='100'/>
+         {/* <img src={url} width='100' height='100'/> */}
         </>
       }
     </div>

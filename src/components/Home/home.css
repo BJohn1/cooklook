@@ -1,6 +1,10 @@
 @import 'https://fonts.googleapis.com/css?family=Droid+Sans|Arvo|Corben|Lobster|Droid+Serif|Raleway|Goudy+Bookletter+1911|Abril+Fatface|Yanone+Kaffeesatz|Hammersmith+One|Lato|PT+Sans+Narrow|Open+Sans|Open+Sans+Condensed|Old+Standard+TT|Merriweather|Montserrat|Roboto|Titillium+Web|Karla|Oswald|Glegoo|Vollkorn|Courgette|Abel|Sniglet|Ubuntu|PT+Sans|PT+Serif|PT+Mono';
 
 /* Example row */
+html{
+	background-color: black;
+	color: white
+}
 #row {
 	display: flex;
 	flex-direction: column;
