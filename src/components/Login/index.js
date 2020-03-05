@@ -9,6 +9,7 @@ class Login extends Component{
     state = {
         email: '',
         password1: '',
+        isAuth: false,
     };
 
     handleChange = (e) =>{

@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react'
 import SearchForm from '../SearchForm';
 import MunchieSearch from '../MunchieSearch'
 import './home.css';
+import { NavLink } from 'react-router-dom';
 
 
 class Home extends Component{
@@ -37,7 +38,7 @@ class Home extends Component{
         <div id="row">
         <h1 id="heading">Where are you right now?</h1>
         <h4 id="strapline"><SearchForm onFormSubmit={this.onFormSubmit}/><MunchieSearch searchLocationQuery = {searchLocationQuery}/></h4>
-        <span><a class="button" href="google.com" target="_blank">full demo</a></span>
+        <span><NavLink class="button" exact to='/munchies/camera'>Camera</NavLink></span>
       </div>
       ) 
     }

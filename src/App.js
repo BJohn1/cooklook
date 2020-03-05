@@ -49,8 +49,8 @@ class App extends Component {
         <Route exact path='/password-forget' component={PasswordForgetLink} />
         
         <Route exact path='/munchies/search' render={()=> <SearchForm onFormSubmit={this.onFormSubmit}/>}/>
-        <Route exact path='/munchies/:id/camera' component={Camera} />
-        <Route exact path='/munchies/camera' component={Camera} />
+        <Route exact path='/munchies/:id/camera' component={Camera} user={currentUser}/>
+        <Route exact path='/munchies/camera' component={Camera} user={currentUser}/>
         <Route exact path='/munchies/:id' render={()=> <MunchieShow user={this.state.currentUser}/>} />
         {/* <MunchieSearch searchLocationQuery = {this.state.searchLocationQuery}/>   */}
       </Switch>
