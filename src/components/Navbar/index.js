@@ -20,7 +20,7 @@ const Navbar = ({isLoggedIn, currentUser, doSetCurrentUser}) => {
         
     {isLoggedIn ? (
     <>
-    <span>Hello {currentUser.email}</span>
+    <span></span>
     <span style={{cursor:'pointer'}} onClick={logoutUser}> Logout </span>
     </>
 ) : (

@@ -3,9 +3,10 @@ import 'react-html5-camera-photo/build/css/index.css';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import firebase from 'firebase'
 import Firebase from '../Firebase/firebase'
-import MunchieShow from '../MunchieShow'
-import ImagePreview from '../ImagePreview'; // source code : ./src/demo/AppWithImagePreview/ImagePreview
-import { isCompositeComponent } from 'react-dom/test-utils';
+import '../Camera/camera.css'
+
+
+
  
 function App (props) {
   const [dataUri, setDataUri] = useState('');
@@ -98,11 +99,30 @@ useEffect(()=>{
     <div>
       {
         <>
-         <ul>
+        <html>
+    <head>
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0"/>
+        <title>JS Bin</title>
+    </head>
+    <body class='camera'>
+        <header>Scrollable Kodak Moments</header>
+        <div class='mouse'>
+        <nav id="div_top_hypers"> 
+            <ul id="ul_top_hypers">
+            {images.map((u,i)=>(
+                <li key={i}><img src={u.imageUrl} width='300' height='210' alt={i}/></li>
+            ))}
+            </ul>
+        </nav>
+        </div>
+        <footer>Add Your Own Kodak Moment Below</footer>
+    </body>
+</html>
+         {/* <ul>
             {images.map((u,i)=>(
                 <li key={i}><img src={u.imageUrl} width='50' height='50' alt={i}/></li>
             ))}
-         </ul>  
+         </ul>  */} 
          <Camera
           onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
           onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }

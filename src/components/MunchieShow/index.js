@@ -45,15 +45,15 @@ function MunchieShow(props) {
         <img
           src={business.image_url}
           alt="munchie image"
-          height="420"
-          width="420"
+          height="350"
+          width="350"
         />
       </div>
       
       <p>Rating: {business.rating} out of 5 Stars</p>
       <p>{business.review_count} People Have Reviewed <strong>{business.name}</strong></p>
-      <a href={business.url} target='blank'>More info on YELP</a><br></br>
-      <button><NavLink exact to ={`/munchies/${business.id}/camera`}> See More Photos of this Place! </NavLink></button>
+      <a class='link' href={business.url} target='blank'>More info on YELP</a><br></br>
+      <button class='link'><NavLink exact to ={`/munchies/${business.id}/camera`}> See More Photos of this Place! </NavLink></button>
     </div>
   );
 }
