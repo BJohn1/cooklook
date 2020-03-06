@@ -18,14 +18,20 @@ function App (props) {
 
   const fetchImg = async () => {
     try {
-      const imgArr = []
-      const querySnapshot = await imageRef.where("userId", "==", 'pJnLN8kQ9WNqmhmZT4PtTvsel9g1' ).get()
-      console.log(querySnapshot)
+      const querySnapshot = await imageRef.where("businessId", "==", id )
+      .onSnapshot(snap => {
+        const imgArr = snap.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+        setImages(imgArr)
+      })
+      /* console.log(querySnapshot)
       querySnapshot.forEach(doc => {
         //console.log(doc.id, ' => ', doc.data())
         imgArr.push({...doc.data(), id: doc.id})
-      })
-      setImages([...imgArr])
+      }) 
+      setImages([...imgArr])*/
       console.log(images)
     } catch (error) {
       console.log(error)
@@ -36,7 +42,6 @@ function App (props) {
     var storage=firebase.storage()
     var ref=storage.ref()
     var imagesRef=ref.child("image")
-    // firebase.database.collection('images').set({userid: userid, picture: 'url here', location: 'business id here'})
     //how to get the src for the image I just took VVVVVV
     ref.child("image").getDownloadURL().then(function(picUrl) {
       setUrl([...url,picUrl ])
@@ -48,7 +53,7 @@ function App (props) {
         imageUrl: picUrl,
         businessId: id,
       })
-      document.querySelector('img').src = url;
+      //document.querySelector('img').src = url;
     }).catch(function(error) {
       console.log(error)
     });
@@ -81,14 +86,24 @@ function App (props) {
  
  useEffect(()=>{
     console.log(images)
-},[images]) 
+},[images])
+
+useEffect(()=>{
+  console.log('hit')
+  fetchImg()
+},[]) 
 
   const isFullscreen = false;
   return (
     <div>
       {
         <>
-          <Camera
+         <ul>
+            {images.map((u,i)=>(
+                <li key={i}><img src={u.imageUrl} width='50' height='50' alt={i}/></li>
+            ))}
+         </ul>  
+         <Camera
           onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
           onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
           onCameraError = { (error) => { handleCameraError(error); } }
@@ -97,7 +112,7 @@ function App (props) {
           imageType = {IMAGE_TYPES.JPG}
           imageCompression = {0.97}
           isMaxResolution = {true}
-          isImageMirror = {false}
+          isImageMirror = {true}
           isSilentMode = {false}
           isDisplayStartCameraError = {true}
           isFullscreen = {false}
@@ -105,11 +120,6 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
-         <ul>
-            {images.map((u,i)=>(
-                <li key={i}><img src={u.imageUrl} width='50' height='50' alt={i}/></li>
-            ))}
-         </ul>  
         </>
       }
     </div>

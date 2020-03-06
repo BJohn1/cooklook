@@ -53,7 +53,7 @@ function MunchieShow(props) {
       <p>Rating: {business.rating} out of 5 Stars</p>
       <p>{business.review_count} People Have Reviewed <strong>{business.name}</strong></p>
       <a href={business.url} target='blank'>More info on YELP</a><br></br>
-      <button><NavLink exact to ={`/munchies/${business.id}/camera`}> Add More Photos to Share </NavLink></button>
+      <button><NavLink exact to ={`/munchies/${business.id}/camera`}> See More Photos of this Place! </NavLink></button>
     </div>
   );
 }
