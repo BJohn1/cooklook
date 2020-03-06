@@ -5,6 +5,8 @@ import firebase from 'firebase'
 import Firebase from '../Firebase/firebase'
 import '../Camera/camera.css'
 
+let count = 1
+
 
 
  
@@ -42,9 +44,9 @@ function App (props) {
   function handleTakePhoto (dataUri) {
     var storage=firebase.storage()
     var ref=storage.ref()
-    var imagesRef=ref.child("image")
+    var imagesRef=ref.child(`${id}${count}`)
     //how to get the src for the image I just took VVVVVV
-    ref.child("image").getDownloadURL().then(function(picUrl) {
+    ref.child(`${id}${count}`).getDownloadURL().then(function(picUrl) {
       setUrl([...url,picUrl ])
       user && console.log(user.uid)//CURRENT USER id
       console.log("image urL: "+ picUrl);//IMAGE URL
@@ -64,6 +66,7 @@ function App (props) {
     });
       setPics([...pics, dataUri])
       console.log("this is your urL: "+url)
+      count+=1
       fetchImg()
       console.log(images)
   }

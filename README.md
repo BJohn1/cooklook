@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href="cooklook-10985.firebaseapp.com">PROJECT 4</a>
 
-## Available Scripts
+# Project 4<br>React/Firebase<br>Full-stack Camera Application
 
-In the project directory, you can run:
+## Title
 
-### `yarn start`
+COOKLOOK
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**This app is an awesome opportunity for VISUAL people to check in on locations or share their presence at a location.<br>The objective is to choose your current location and show the world whats currently going on(onSnapshot)! You can also check nearby locations to see what the vibe is or if it is currently busy.<br> This is essentially a stripped down, IMAGES ONLY, version of yelp for people that want immediate and current visual information <br> Are you ready to start sharing!?**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="" alt="Italian Trulli">
+<img src="" alt="Italian Trulli">
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**React.js, JavaScript, CSS, Firebase Auth, Firebase**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**<a href="cooklook-10985.firebaseapp.com">CLICK HERE</a> to get started. HAVE FUN and make sure to take tons of photos.**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Next Steps 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Implement video.<br> Enhance UX/UI with responsive CSS.<br> Implement upvote feature so that the popularity can be measured<br> Have Player Bio, Stats, and Photo Appear when lineups are finished**
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+  
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
