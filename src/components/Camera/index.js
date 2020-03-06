@@ -5,18 +5,37 @@ import firebase from 'firebase'
 import Firebase from '../Firebase/firebase'
 import MunchieShow from '../MunchieShow'
 import ImagePreview from '../ImagePreview'; // source code : ./src/demo/AppWithImagePreview/ImagePreview
+import { isCompositeComponent } from 'react-dom/test-utils';
  
 function App (props) {
   const [dataUri, setDataUri] = useState('');
   const [pics, setPics] = useState([]);
   const[url,setUrl]=useState([]);
+  const[img,setImg]=useState([]);
   const id = props.match.params.id;
   var user = firebase.auth().currentUser;
+  const imageRef = Firebase.database.collection('images')
   var name, email, photoUrl, uid, emailVerified;
   if (user != null) {
     uid = user.uid;
     console.log(uid)//USER ID
   }
+
+  const fetchImg = async () => {
+    try {
+      const imgArr = []
+      const querySnapshot = await imageRef.where("userId", "==", 'pJnLN8kQ9WNqmhmZT4PtTvsel9g1' ).get()
+      console.log(querySnapshot)
+      querySnapshot.forEach(doc => {
+        console.log(doc.id, ' => ', doc.data())
+        imgArr.push({...doc.data(), id: doc.id})
+      })
+      setImg(imgArr)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   function handleTakePhoto (dataUri) {
     var storage=firebase.storage()
     var ref=storage.ref()
@@ -42,11 +61,12 @@ function App (props) {
       //console.log('Uploaded a base64 string!');
     });
       setPics([...pics, dataUri])
-      console.log("this is your "+url)
+      console.log("this is your urL: "+url)
+      fetchImg()
   }
  
   function handleTakePhotoAnimationDone (dataUri) {
-    console.log('takePhoto');
+    //console.log('takePhoto');
     setDataUri(dataUri);
   }
 
@@ -55,11 +75,11 @@ function App (props) {
   }
  
   function handleCameraStart (stream) {
-    console.log('handleCameraStart');
+    //console.log('handleCameraStart');
   }
  
   function handleCameraStop () {
-    console.log('handleCameraStop');
+    //console.log('handleCameraStop');
   }
  
   const isFullscreen = false;
@@ -84,6 +104,7 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
+
         {/* <ul>
             {pics.map((p,i)=>(
                 <li key={i}><img src={p} width='50' height='50'/></li>
