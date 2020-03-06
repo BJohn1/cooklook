@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import 'react-html5-camera-photo/build/css/index.css';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import firebase from 'firebase'
@@ -11,15 +11,10 @@ function App (props) {
   const [dataUri, setDataUri] = useState('');
   const [pics, setPics] = useState([]);
   const[url,setUrl]=useState([]);
-  const[img,setImg]=useState([]);
+  const[images,setImages]=useState([]);
   const id = props.match.params.id;
   var user = firebase.auth().currentUser;
   const imageRef = Firebase.database.collection('images')
-  var name, email, photoUrl, uid, emailVerified;
-  if (user != null) {
-    uid = user.uid;
-    console.log(uid)//USER ID
-  }
 
   const fetchImg = async () => {
     try {
@@ -27,15 +22,16 @@ function App (props) {
       const querySnapshot = await imageRef.where("userId", "==", 'pJnLN8kQ9WNqmhmZT4PtTvsel9g1' ).get()
       console.log(querySnapshot)
       querySnapshot.forEach(doc => {
-        console.log(doc.id, ' => ', doc.data())
+        //console.log(doc.id, ' => ', doc.data())
         imgArr.push({...doc.data(), id: doc.id})
       })
-      setImg(imgArr)
+      setImages([...imgArr])
+      console.log(images)
     } catch (error) {
       console.log(error)
     }
   }
-
+  
   function handleTakePhoto (dataUri) {
     var storage=firebase.storage()
     var ref=storage.ref()
@@ -44,7 +40,7 @@ function App (props) {
     //how to get the src for the image I just took VVVVVV
     ref.child("image").getDownloadURL().then(function(picUrl) {
       setUrl([...url,picUrl ])
-      user && console.log(user.uid)//CURRENT USER OBJECT
+      user && console.log(user.uid)//CURRENT USER id
       console.log("image urL: "+ picUrl);//IMAGE URL
       console.log("restaurant id: " + id)//RESTAURANT ID
       Firebase.database.collection('images').add({
@@ -63,6 +59,7 @@ function App (props) {
       setPics([...pics, dataUri])
       console.log("this is your urL: "+url)
       fetchImg()
+      console.log(images)
   }
  
   function handleTakePhotoAnimationDone (dataUri) {
@@ -82,6 +79,10 @@ function App (props) {
     //console.log('handleCameraStop');
   }
  
+ useEffect(()=>{
+    console.log(images)
+},[images]) 
+
   const isFullscreen = false;
   return (
     <div>
@@ -104,18 +105,11 @@ function App (props) {
           onCameraStart = { (stream) => { handleCameraStart(stream); } }
           onCameraStop = { () => { handleCameraStop(); } }
         />
-
-        {/* <ul>
-            {pics.map((p,i)=>(
-                <li key={i}><img src={p} width='50' height='50'/></li>
-            ))}
-         </ul>  */} 
          <ul>
-            {url.map((u,i)=>(
-                <li key={i}><img src={u} width='50' height='50' alt={u}/></li>
+            {images.map((u,i)=>(
+                <li key={i}><img src={u.imageUrl} width='50' height='50' alt={i}/></li>
             ))}
          </ul>  
-         {/* <img src={url} width='100' height='100'/> */}
         </>
       }
     </div>
